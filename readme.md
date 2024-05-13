@@ -4,6 +4,10 @@
     ```
     https://www.udemy.com/course/web-completo/learn/lecture/12878870#overview
     ```
+
+    ``` ultimo visto
+    https://www.udemy.com/course/web-completo/learn/lecture/12878870#overview
+    ```
 #### requisitos composer
     ```
     https://getcomposer.org/
@@ -65,7 +69,6 @@ RewriteRule . index.php [L]
 ```
 http://localhost/www/app-slim/slim/hello/bastiao
 ```
-php-slim-framework
 
 #### Exemplo de rotas
 ```
