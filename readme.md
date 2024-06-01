@@ -3,10 +3,6 @@
     ```
     https://www.udemy.com/course/web-completo/learn/lecture/12878870#overview
     ```
-
-    ``` ultimo visto
-    https://www.udemy.com/course/web-completo/learn/lecture/12878886#overview
-    ```
 #### 1. requisitos composer
     ```
     https://getcomposer.org/
@@ -21,9 +17,42 @@
 https://www.slimframework.com/
 ```` 
 #### 4. composer slim
+* no terminar digitar o comando
 ````
 composer require slim/slim "^3.0"
 ````
+#### 4.1. criar o arquivo Htaccess criar um arquivo no diretorio raiz com nome .htaccess
+```
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+```
+
+#### 4.2 primeiro index com slim
+```
+<?php
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+require 'vendor/autoload.php';
+
+$app = new \Slim\App;
+
+// rotas opcional
+$app->get('/hello', function (Request $request, Response $response, array $args){
+    echo "Hello Wolrd";
+});
+
+$app->get('/hello2/{name}', function (Request $request, Response $response, array $args){
+    $name = $args['name'];
+    $response->getBody()->write("Hello, $name");
+    return $response;
+});
+
+// http://localhost/www/app-slim/slim/v1/produtos
+
+$app->run();
+```
 #### 5. Rotas criadas
 * Lista postagens
 ```
@@ -75,18 +104,11 @@ $app->run();
 ```
 php -S localhost:8000
 ```
-#### 9. Htaccess criar um arquivo no diretorio raiz com nome .htaccess
-```
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.php [L]
-```
 * resultado com htaccess
 ```
 http://localhost/www/app-slim/slim/hello/bastiao
 ```
-#### 10. Exemplo de rotas
+#### 9. Exemplo de rotas
 ```
 <?php
 require 'vendor/autoload.php';
@@ -108,6 +130,6 @@ $app->get('/usuarios/{id}', function($request, $response){
 
 $app->run();
 ```
-#### 11. Outras referencias
+#### 10. Outras referencias
 ```
 ```
