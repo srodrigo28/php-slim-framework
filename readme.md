@@ -3,6 +3,10 @@
     ```
     https://www.udemy.com/course/web-completo/learn/lecture/12878870#overview
     ```
+
+    ```
+    https://www.udemy.com/course/web-completo/learn/lecture/12879044#overview
+    ```
 #### 1. requisitos composer
     ```
     https://getcomposer.org/
@@ -28,7 +32,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 ```
-
 #### 4.2 primeiro index com slim
 ```
 <?php

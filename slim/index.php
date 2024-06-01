@@ -1,57 +1,54 @@
 <?php
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+// dependency illuminate
+// github.com/illuminate/database
+// lembrar de instalar no diretorio certo!
+// composer require illuminate/database
+
+// Reference: https://www.youtube.com/watch?v=wJjCA8FRGAs
+
 require 'vendor/autoload.php';
 
-$app = new \Slim\App;
+$app = new \Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true
+    ]
+]);
 
-// rotas opcional
-$app->get('/postagens[/{mes}[/{ano}]]', function($req, $res){
-    $mes = $req->getAttribute('mes');
-    $ano = $req->getAttribute('ano');
+$container = $app->getContainer();
+$container['db'] = function(){
 
-    echo 'Listagem de postagens -- ' . $mes . '/' . $ano;
-});
+    $capsule = new Capsule;
+    $capsule->addConnection([
+        'driver'    => 'mysql',
+        'host'      => 'localhost',
+        'database'  => 'db_slim',
+        'username'  => 'root',
+        'password'  => '',
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => '',
+    ]);
 
-// pegando qualquer valor dinamicamente rota dinamica
-$app->get('/lista/{itens:.*}', function($req, $res){
-    $itens = $req->getAttribute('itens');
-    
-    echo 'Listagem de itens: '. $itens;
-    // var_dump(explode("/", $itens));
-});
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
 
-//Criando Rota nomeadas e opcional
-$app->get('/blog/postagens[/{id}]', function($req, $res){
-    echo "Listagem postagens blog";
-})->setName("blog");
+    return $capsule;
+};
 
-//ususando rota noeadas
-$app->get('/meusite', function($req, $res){
-    $retorno = $this-> get("router") -> pathFor( "blog", ["id" => "5" ] );
-
-    echo $retorno;
-});
-
-$app->get('/usuarios', function(){
-    echo 'Listagem de usuarios';
-});
-
-$app->get('/usuarios/{id}', function($request, $response){
-    $id = $request->getAttribute('id');
-    echo 'Listagem de usuarios: ' . $id;
-});
-
-// agrupar rotas
-$app->group('/v2', function(){
-
-    $this->get('/usuarios', function(){
-        echo "Usuários";
-    });
-
-    $this->get('/produtos', function(){
-        echo "Produtos";
+$app->get('/usuarios', function(Request $request, Response $response) {
+    $db = $this->get('db')->schema(); // faltando o c
+    $db->dropIfExists('usuarios');
+    $db->create('usuarios', function($table){
+        $table->increments('id');
+        $table->string('nome');
+        $table->string('email');
+        $table->string('senha');
+        $table->timestamps();
     });
 });
-
-// http://localhost/www/app-slim/slim/v1/produtos
 
 $app->run();
