@@ -1,36 +1,54 @@
 ### Trabalhando com PHP Slim Framework
-
 #### Link do treinamento
     ```
     https://www.udemy.com/course/web-completo/learn/lecture/12878870#overview
     ```
 
     ``` ultimo visto
-    https://www.udemy.com/course/web-completo/learn/lecture/12878870#overview
+    https://www.udemy.com/course/web-completo/learn/lecture/12878886#overview
     ```
-#### requisitos composer
+#### 1. requisitos composer
     ```
     https://getcomposer.org/
     ```
-#### Tipos de requisições
+#### 2. Tipos de requisições
  * Get
  * Post
  * Delete
  * Put / Patch
-#### Slim Framework Instalação
+#### 3. Slim Framework Instalação
 ```` 
 https://www.slimframework.com/
 ```` 
-#### composer slim
+#### 4. composer slim
 ````
 composer require slim/slim "^3.0"
 ````
-#### link do primeiro código
+#### 5. Rotas criadas
+* Lista postagens
+```
+http://localhost/www/app-slim/slim/postagens
+```
+
+* Rotas dinâmicas
+```
+http://localhost/www/app-slim/slim/lista/usuarios
+```
+
+* Rotas multiplos parâmetros
+```
+http://localhost/www/app-slim/slim/postagens/jan/2024
+```
+
+* Rotas versões e agrupadas
+```
+http://localhost/www/app-slim/slim/v2/produtos
+```
+#### 6. link do primeiro código
 ```
 https://www.slimframework.com/docs/v3/
 ```
-
-#### primeiro teste com slim index.php
+#### 7. primeiro teste com slim index.php
 ```
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -53,12 +71,11 @@ $app->run();
 // no navegador colocar 
 // http://localhost/www/app-slim/slim/index.php/hello/bastiao
 ```
-#### rodando o php sem o xampp
+#### 8. rodando o php sem o xampp
 ```
 php -S localhost:8000
 ```
-
-#### Htaccess criar um arquivo no diretorio raiz com nome .htaccess
+#### 9. Htaccess criar um arquivo no diretorio raiz com nome .htaccess
 ```
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -69,8 +86,7 @@ RewriteRule . index.php [L]
 ```
 http://localhost/www/app-slim/slim/hello/bastiao
 ```
-
-#### Exemplo de rotas
+#### 10. Exemplo de rotas
 ```
 <?php
 require 'vendor/autoload.php';
@@ -92,7 +108,6 @@ $app->get('/usuarios/{id}', function($request, $response){
 
 $app->run();
 ```
-
-#### Outras referencias
+#### 11. Outras referencias
 ```
 ```
