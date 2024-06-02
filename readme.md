@@ -25,6 +25,9 @@ https://www.slimframework.com/
 ````
 composer require slim/slim "^3.0"
 ````
+
+#### 5 depois das configurações rodar no terminal
+php db.php
 #### 4.1. criar o arquivo Htaccess criar um arquivo no diretorio raiz com nome .htaccess
 ```
 RewriteEngine on

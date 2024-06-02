@@ -12,7 +12,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 ```
 
-#### 3. Usando iluminate
+#### 3. Usando illuminate
 
 * dependency illuminate
 ```
